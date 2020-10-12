@@ -14,11 +14,11 @@ setup(
     package_data={'': ['*.otf', 'data/*.otf']},
     include_package_data=True,
     install_requires=['pillow'],
-    url='http://github.com/maethor/avatar-generator',
+    url='https://github.com/phoenixatom/dhivehi-avatar',
     classifiers=[
         "Programming Language :: Python",
         "Operating System :: OS Independent",
         "Intended Audience :: Developers"
     ],
-    license="WTFPL",
+    license="GPLv3",
 )
