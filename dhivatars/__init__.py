@@ -4,12 +4,10 @@
 # Code modified from maethor's avatar-generator 
 # Github: https://github.com/maethor/avatar-generator
 
-
 import os
 from random import randint, seed
 from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
-import numpy as np
 
 __all__ = ['Avatar']
 
@@ -17,7 +15,7 @@ class Avatar(object):
     MIN_RENDER_SIZE = 512
 
     @classmethod
-    def generate(cls, string, size=150, bg_color=None, font_color = (255, 255, 255), font_name="Mv_Eamaan_XP.otf", filetype="PNG", circular=False):
+    def generate(cls, string, size=150, bg_color=None, font_color = (255, 255, 255), font_name="Mv_Eamaan_XP.otf", filetype="PNG"):
         render_size = max(size, Avatar.MIN_RENDER_SIZE)
         if not bg_color:
             bg_color = cls._background_color(string)
@@ -32,10 +30,6 @@ class Avatar(object):
         stream = BytesIO()
         image = image.resize((size, size), Image.ANTIALIAS)
         image.save(stream, format=filetype, optimize=True)
-        path = os.path.join(os.path.dirname(__file__), 'generated',f"{string}.png")
-        image.save(path, optimize=True)
-        if circular:
-            cls._to_circle(path, string)
         return stream.getvalue()
 
     @staticmethod
@@ -68,25 +62,3 @@ class Avatar(object):
         left = (size - width) / 2.0
         top = -50 #Don't ask me about this. I don't know why.
         return left, top
-
-    @staticmethod
-    def _to_circle(img_path, string):
-        #Code from: https://stackoverflow.com/questions/51486297/cropping-an-image-in-a-circular-way-using-python
-        img=Image.open(img_path).convert("RGB")
-        npImage=np.array(img)
-        h,w=img.size
-
-        # Create same size alpha layer with circle
-        alpha = Image.new('L', img.size,0)
-        draw = ImageDraw.Draw(alpha)
-        draw.pieslice([0,0,h,w],0,360,fill=255)
-
-        # Convert alpha Image to numpy array
-        npAlpha=np.array(alpha)
-
-        # Add alpha layer to RGB
-        npImage=np.dstack((npImage,npAlpha))
-
-        # Save with alpha
-        path = os.path.join(os.path.dirname(__file__), 'generated',f"circular_{string}.png")
-        Image.fromarray(npImage).save(path)

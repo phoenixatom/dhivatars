@@ -4,8 +4,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='dhivatar',
-    version='0.1',
+    name='dhivatars',
+    version='0.3',
     author="Mohamed Aruham",
     author_email="aruham@baivaru.net",
     description="Generates avatars from dhivehi names or strings",
@@ -14,11 +14,11 @@ setup(
     package_data={'': ['*.otf', 'data/*.otf']},
     include_package_data=True,
     install_requires=['pillow'],
-    url='http://github.com/maethor/avatar-generator',
+    url='https://github.com/phoenixatom/dhivehi-avatar',
     classifiers=[
         "Programming Language :: Python",
         "Operating System :: OS Independent",
         "Intended Audience :: Developers"
     ],
-    license="WTFPL",
+    license="GPLv3",
 )
