@@ -1,6 +1,8 @@
 # Dhivatar
 Generates avatars from dhivehi names or strings
 
+## Installation
+` pip install dhivatars ` 
 
 ## Credits
 * [PhoenixAtom](https://github.com/phoenixatom) - Author
